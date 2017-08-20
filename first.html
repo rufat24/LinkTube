@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script>
+var player=[],i=0,a='';
+$( function() {
+    $( "#lox" ).draggable().resizable({
+	resize: function(e,ui) {
+            x = ui.size.height,
+            y = ui.size.width;
+        $('#plo').height(x);
+		$('#plo').width(y);
+    }});
+  } );
+     $(document).ready(function() {
+	   $('#l').click(function () {
+			  $('#lox2').append('<div id="loxu'+i+'" style="height:390;width: 640" class="draggable1"><div id="player'+i+'"></div></div>');
+			  createPlayer(player[i],"player"+i);
+			  i++;
+			  $( '#loxu'+i ).draggable().resizable({
+				resize: function(e,ui) {
+				x = ui.size.height,
+				y = ui.size.width;
+				$("#player"+i).height(x);
+				$("#player"+i).width(y);
+    }});
+	
+	})
+  });
+</script>
+<link rel="stylesheet" href="das.css"/>
+ </head> 
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="lox" style="height:390;width: 640" class="draggable1"><div id="plo"></div><button id="l">Add</button></div>
+	<div id="lox2" class="draggable1"></div>
+
+    <script>
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var plo;
+	  function onYouTubeIframeAPIReady() {
+		createPlayer(plo,"plo");
+		}
+	  function createPlayer(pl,de){
+	  pl = new YT.Player(de, {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+	  function onPlayerReady(event) {
+        event.target.seekTo(152, true);
+      }
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+          setTimeout(stopVideo, 5000);
+        }
+      }
+	  function stopVideo() {
+        pl.stopVideo();
+      }
+	  };
+	  
+      
+    </script>
+  </body>
+</html>

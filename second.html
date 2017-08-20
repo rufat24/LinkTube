@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+   <link rel="stylesheet" href="das.css"/>
+<script type="text/javascript" 
+	src="js/jsj.js"></script>
+ </head> 
+ 
+
+<html>
+  <body>
+    <div id="container" style="height:390px;width: 640px; position: relative;">
+  
+	<div id="player"></div>
+	</div>
+	
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var player;
+      var videotime = 0;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+	  console.log("loxxx");
+	  var annot=[];
+	  var kanobe;
+	  $.ajax( {
+							url: "/addAnnotation",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							for(i=0;i<data.length;i++){
+								kanobe.topic=data[i].topic;
+								kanobe.video_id= data[i].video_id;
+								kanobe.context=data[i].context;
+								kanobe.start= data[i].start;
+								kanobe.end= data[i].end,
+								kanobe.top= data[i].top,
+								kanobe.leftt= data[i].leftt,
+								kanobe.height= data[i].height,
+								kanobe.width= data[i].width
+								}
+								
+							}
+			});
+        event.target.playVideo();
+		console.log(annot.length);
+        function updateTime() {
+          if(player && player.getCurrentTime) {
+            videotime = Math.round(player.getCurrentTime());
+			for(i=0;i<annot.length;i++){
+			if(videotime==annot[i].start)
+				$("#container").append('<div id="annot'+i+ '"style="top:'+annot[i].top+'px;left:'+annot[i].leftt+'px;width:'+annot[i].width+'px;height:'+annot[i].height+'px; " class="annotation"></div>');
+			}
+			for(i=0;i<annot.length;i++){
+			if(videotime==annot[i].end)
+				$('#annot'+i).remove();
+			}
+          }
+        }
+        timeupdater = setInterval(updateTime, 1000);
+      }
+
+      function onPlayerStateChange(event) {
+
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+			
+	
+    </script>
+	
+  </body>
+</html>

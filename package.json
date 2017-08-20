@@ -1,0 +1,31 @@
+<<<<<<< HEAD
+
+{
+  "name": "express-html",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.11.0",
+	"mysql":"^2.10.2"
+  }
+=======
+<<<<<<< HEAD
+
+{
+  "name": "express-html",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.11.0",
+	"mysql":"^2.10.2"
+  }
+=======
+
+{
+  "name": "express-html",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.11.0",
+	"mysql":"^2.10.2"
+  }
+>>>>>>> Final Commit
+>>>>>>> Final
+}

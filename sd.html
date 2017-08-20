@@ -1,0 +1,339 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+	<script type="text/javascript" 
+	src="js/jsj.js"></script>
+   <link rel="stylesheet" href="css/das.css"/>
+
+ </head> 
+<html>
+  <body>
+	<div id="slideview" class="secview">
+    <div id="playerob" style=" top: 10%;  left: 5%; position: relative;">
+		<div id="player"></div>
+		<div id="thumbbar" class="thumbnailbar"> 
+		<ul id="ullist" class="ullist">
+			<li id="likedvideo" class="thumbnail">
+			</li>
+			<li>
+			<hr align="center" width="300" size="2" color="#a6a6a6" />
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	</div>
+    <script>
+	
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+	  var videos=[];
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '500',
+          width: '800',
+          videoId: 'e-P5IFTqB98',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+		var check=getYoutubeId(player.getVideoUrl());
+		for(i=0;i<videos.length;i++){
+			if(check.localeCompare(videos[i].link)==0){
+				$('[id^="video"]').removeClass('clicked');
+				$('#video'+i).toggleClass('clicked');
+			}
+		}
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      };
+	  
+
+
+	  
+	$.ajax( {
+							url: "/getVideos",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							for(index in data) {
+								videos.push({
+								start: data[index].start,
+								link: data[index].link,
+								end: data[index].end,
+								name: data[index].name,
+								
+							})
+							}
+							for(i=0;i<videos.length;i++){
+								$("#ullist").append('<li id="video'+i+'" class="thumbnail"><img src="http://img.youtube.com/vi/'+videos[i].link+'/mqdefault.jpg" ><div class="centerda">'+videos[i].name+'</div></li>');
+							}
+							
+							}
+			});
+		 $('[id^="video"]').live( "click", function() {
+		 var aa=parseInt($(this).attr("id").substr(5));
+		 player.loadVideoById({'videoId': videos[aa].link,
+               'startSeconds': videos[aa].start,
+               'endSeconds': videos[aa].end,
+               'suggestedQuality': 'large'});
+	});
+	
+    </script>
+
+  </body>
+</html>
+=======
+<<<<<<< HEAD
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+	<script type="text/javascript" 
+	src="js/jsj.js"></script>
+   <link rel="stylesheet" href="css/das.css"/>
+
+ </head> 
+<html>
+  <body>
+	<div id="slideview" class="secview">
+    <div id="playerob" style=" top: 10%;  left: 5%; position: relative;">
+		<div id="player"></div>
+		<div id="thumbbar" class="thumbnailbar"> 
+		<ul id="ullist" class="ullist">
+			<li id="likedvideo" class="thumbnail">
+			</li>
+			<li>
+			<hr align="center" width="300" size="2" color="#a6a6a6" />
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	</div>
+    <script>
+	
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+	  var videos=[];
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '500',
+          width: '800',
+          videoId: 'e-P5IFTqB98',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+		var check=getYoutubeId(player.getVideoUrl());
+		for(i=0;i<videos.length;i++){
+			if(check.localeCompare(videos[i].link)==0){
+				$('[id^="video"]').removeClass('clicked');
+				$('#video'+i).toggleClass('clicked');
+			}
+		}
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      };
+	  
+
+
+	  
+	$.ajax( {
+							url: "/getVideos",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							for(index in data) {
+								videos.push({
+								start: data[index].start,
+								link: data[index].link,
+								end: data[index].end,
+								name: data[index].name,
+								
+							})
+							}
+							for(i=0;i<videos.length;i++){
+								$("#ullist").append('<li id="video'+i+'" class="thumbnail"><img src="http://img.youtube.com/vi/'+videos[i].link+'/mqdefault.jpg" ><div class="centerda">'+videos[i].name+'</div></li>');
+							}
+							
+							}
+			});
+		 $('[id^="video"]').live( "click", function() {
+		 var aa=parseInt($(this).attr("id").substr(5));
+		 player.loadVideoById({'videoId': videos[aa].link,
+               'startSeconds': videos[aa].start,
+               'endSeconds': videos[aa].end,
+               'suggestedQuality': 'large'});
+	});
+	
+    </script>
+
+  </body>
+</html>
+=======
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+   <link rel="stylesheet" href="css/das.css"/>
+
+ </head> 
+<html>
+  <body>
+	<div id="slideview" class="secview">
+    <div id="playerob" style=" top: 10%;  left: 5%; position: relative;">
+		<div id="player"></div>
+		<div id="thumbbar" class="thumbnailbar"> 
+		<ul id="ullist" class="ullist">
+			<li id="likedvideo" class="thumbnail">
+			</li>
+			<li>
+			<hr align="center" width="300" size="2" color="#a6a6a6" />
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	</div>
+    <script>
+	
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+	  var videos=[];
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '500',
+          width: '800',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+		var check=getYoutubeId(player.getVideoUrl());
+		for(i=0;i<videos.length;i++){
+			if(check.localeCompare(videos[i].link)==0){
+				$('[id^="video"]').removeClass('clicked');
+				$('#video'+i).toggleClass('clicked');
+			}
+		}
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      };
+	  
+	function getYoutubeId(url) {
+		var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var match = url.match(regExp);
+
+		if (match && match[2].length == 11) {
+			return match[2];
+		} else {
+        return 'error';
+		}
+}
+
+	  
+	$.ajax( {
+							url: "/getVideos",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							for(index in data) {
+								videos.push({
+								start: data[index].start,
+								link: data[index].link,
+								end: data[index].end,
+								name: data[index].name,
+								
+							})
+							}
+							for(i=0;i<videos.length;i++){
+								$("#ullist").append('<li id="video'+i+'" class="thumbnail"><img src="http://img.youtube.com/vi/'+videos[i].link+'/mqdefault.jpg" ><h3>'+videos[i].name+'</h3></li>');
+							}
+							
+							}
+			});
+		 $('[id^="video"]').live( "click", function() {
+		 var aa=parseInt($(this).attr("id").substr(5));
+		 player.loadVideoById({'videoId': videos[aa].link,
+               'startSeconds': videos[aa].start,
+               'endSeconds': videos[aa].end,
+               'suggestedQuality': 'large'});
+	});
+    </script>
+
+  </body>
+</html>
+>>>>>>> Final Commit
+>>>>>>> Final

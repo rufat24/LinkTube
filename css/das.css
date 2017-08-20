@@ -1,0 +1,156 @@
+
+#navi,
+.draggable {
+  top:0;
+  left:0;
+  position: absolute;
+  background:#6FBAD8;
+  opacity: 0.6;
+  -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  text-align: center;
+  transition: box-shadow .3s ease;
+  resize: both;
+  cursor: pointer;
+}
+.draggable:hover{opacity:0.8}
+#lox1{
+position:absolute;
+height:100%;
+width:100%;
+top:0;
+left:0;
+background-color: #4CAF50;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	top: 50%;
+	left: 50%;
+}
+
+.button1 {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.close {
+	content: 'X';
+    color: #777;
+	font: 14px/100% arial, sans-serif;
+	position: absolute;
+	right: 5px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #fff;
+	top: 5px;
+	font-family: Copperplate,Copperplate Gothic Light,fantasy;
+}
+h2{
+color: #333333;
+font-size: 16px;
+font-family: Copperplate,Copperplate Gothic Light,fantasy;
+font-weight:10;
+}
+h3{
+float: right;
+color: #333333;
+font-size: 16px;
+font-family: Copperplate,Copperplate Gothic Light,fantasy;
+font-weight:10;
+}
+.draggable1 {
+  position: absolute;
+  background:#6FBAD8;
+  border: 2px solid #333;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  resize: both;
+  cursor: pointer;
+}
+.annotation {
+  position: absolute;
+  background:#6FBAD8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: 0.4;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  cursor: pointer;
+}
+.thumbnailbar {
+overflow-y:scroll;
+  display: inline;
+  width:340px;
+  height:490px;
+  position: absolute;
+  padding:5px;
+  background:#f2f2f2;
+  border: 1px solid #ccc;
+  background-color: white;
+
+}
+.thumbnail {
+  list-style:none; 
+  vertical-align: top ;
+ position: relative;
+ padding-left: 11px;
+  margin:0 0 3px 0;
+  background:#6FBAD8;
+  width:300px;
+  height:60px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  cursor: pointer;
+}
+.ullist {
+list-style: none;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+.secview{   
+	width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+.clicked {
+  background-color: yellow;
+}
+img {width:80px;height:60px;cursor:pointer;}
+
+.annotation:hover{opacity:0.8}
+.thumbnail:hover{border: 3px solid #D80000;}
+
+.ui-resizable { }
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}

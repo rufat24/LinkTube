@@ -1,0 +1,298 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+   <link rel="stylesheet" href="css/das.css"/>
+   <script type="text/javascript" 
+	src="js/jsj.js"></script>
+<script>
+</script>
+ </head> 
+ 
+
+<html>
+  <body>
+    <div id="container" class="contain">
+	<div id="player"></div>
+	</div>
+	
+	
+	
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var player;
+      var videotime = 0;
+	  
+	  var annot=[];
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '500',
+          width: '800',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+	  $.ajax( {
+							url: "/addAnnotation",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							console.log(data.length);
+							for (var i = 0; i < data.length; i++) {
+							console.log(i);
+								annot.push({
+									topic: data[i].topic,
+									video_id: data[i].video_id,
+									link: data[i].link,
+									start: data[i].start,
+									end: data[i].end,
+									top: data[i].top,
+									leftt: data[i].leftt,
+									width: data[i].width,
+									height: data[i].height,
+									context: data[i].context,
+									});							
+								}
+								timeupdater = setInterval(updateTime, 1000);
+							}							
+			});
+			
+        event.target.playVideo();
+        function updateTime() {
+          if(player && player.getCurrentTime) {
+            videotime = Math.round(player.getCurrentTime());
+			for(i=0;i<annot.length;i++){
+				if(videotime>=annot[i].start && videotime<=annot[i].end ){
+					if($("#annt" + i).length == 0){
+						$("#container").append('<div id="annt'+i+ '"style=" top:'+annot[i].top+'px;left:'+annot[i].leftt+'px;width:'+annot[i].width+'px;height:'+annot[i].height+'px; " class="annotation"><div class="centerd">'+annot[i].context+'</div></div>');
+						$("#annt" + i).addClass('annotover',200);
+						}
+					else if($("#annt" + i).is(':hidden')){
+						$('#annt'+i).show();
+						}
+				}
+				else if($("#annt" + i).is(':visible')){
+					$('#annt'+i).hide();
+				}
+				
+			}
+          }
+        }
+		
+		var playe=[],j=0,a='';
+
+		 $('.annotation').live('click',function () {
+			  $('body').append('<div id="loxu'+j+'" class="lom1"><div id="player'+j+'"></div></div>');
+			  createPlayer(playe[j],"player"+j);
+			  j++;
+			  $( '.lom1' ).draggable().resizable({
+				resize: function(e,ui) {
+				x = ui.size.height,
+				y = ui.size.width;
+				$( this).children( '[id^="player"]' ).height(x);
+				$( this).children( '[id^="player"]' ).width(y);
+		}});
+	
+		})
+      }
+
+      function onPlayerStateChange(event) {
+
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+	<script>
+	  function createPlayer(pl,de){
+	  pl = new YT.Player(de, {
+          height: '100',
+          width: '150',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+	  function onPlayerReady(event) {
+        event.target.seekTo(152, true);
+      }
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+          setTimeout(stopVideo, 5000);
+        }
+      }
+	  function stopVideo() {
+        pl.stopVideo();
+      }
+	  };
+	</script>
+	
+  </body>
+=======
+<!DOCTYPE html>
+ <head>
+  <meta charset="utf-8">
+  <title>empty</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="nodik.js"></script>
+   <link rel="stylesheet" href="css/das.css"/>
+   <script type="text/javascript" 
+	src="js/jsj.js"></script>
+<script>
+</script>
+ </head> 
+ 
+
+<html>
+  <body>
+    <div id="container" class="contain">
+	<div id="player"></div>
+	</div>
+	
+	
+	
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var player;
+      var videotime = 0;
+	  
+	  var annot=[];
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '500',
+          width: '800',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+	  $.ajax( {
+							url: "/addAnnotation",
+							type: "GET",
+							dataType: "json",
+							success: function(data){
+							console.log(data.length);
+							for (var i = 0; i < data.length; i++) {
+							console.log(i);
+								annot.push({
+									topic: data[i].topic,
+									video_id: data[i].video_id,
+									link: data[i].link,
+									start: data[i].start,
+									end: data[i].end,
+									top: data[i].top,
+									leftt: data[i].leftt,
+									width: data[i].width,
+									height: data[i].height,
+									context: data[i].context,
+									});							
+								}
+								timeupdater = setInterval(updateTime, 1000);
+							}							
+			});
+			
+        event.target.playVideo();
+        function updateTime() {
+          if(player && player.getCurrentTime) {
+            videotime = Math.round(player.getCurrentTime());
+			for(i=0;i<annot.length;i++){
+				if(videotime>=annot[i].start && videotime<=annot[i].end ){
+					if($("#annt" + i).length == 0){
+						$("#container").append('<div id="annt'+i+ '"style=" top:'+annot[i].top+'px;left:'+annot[i].leftt+'px;width:'+annot[i].width+'px;height:'+annot[i].height+'px; " class="annotation"><div class="centerd">'+annot[i].context+'</div></div>');
+						$("#annt" + i).addClass('annotover',200);
+						}
+					else if($("#annt" + i).is(':hidden')){
+						$('#annt'+i).show();
+						}
+				}
+				else if($("#annt" + i).is(':visible')){
+					$('#annt'+i).hide();
+				}
+				
+			}
+          }
+        }
+		
+		var playe=[],j=0,a='';
+
+		 $('.annotation').live('click',function () {
+			  $('body').append('<div id="loxu'+j+'" class="lom1"><div id="player'+j+'"></div></div>');
+			  createPlayer(playe[j],"player"+j);
+			  j++;
+			  $( '.lom1' ).draggable().resizable({
+				resize: function(e,ui) {
+				x = ui.size.height,
+				y = ui.size.width;
+				$( this).children( '[id^="player"]' ).height(x);
+				$( this).children( '[id^="player"]' ).width(y);
+		}});
+	
+		})
+      }
+
+      function onPlayerStateChange(event) {
+
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+	<script>
+	  function createPlayer(pl,de){
+	  pl = new YT.Player(de, {
+          height: '100',
+          width: '150',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+	  function onPlayerReady(event) {
+        event.target.seekTo(152, true);
+      }
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+          setTimeout(stopVideo, 5000);
+        }
+      }
+	  function stopVideo() {
+        pl.stopVideo();
+      }
+	  };
+	</script>
+	
+  </body>
+>>>>>>> Final
+</html>
